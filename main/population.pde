@@ -34,7 +34,7 @@ public class Population
       // Generate a random number
       for(int i = 0; i < inputsNum; i++)
       {
-        randNum[i] = random(0.5, 1);
+        randNum[i] = random(-1, 1);
       }
       
       for(int i = 0; i < popNum; i++)
@@ -110,7 +110,7 @@ public class Population
     
     for(int i = 0; i < popNum; i++)
     {
-      cumulativeFitness += Math.pow((1 / error[i]) * 100, 2); // ^4 gives the best elements even more chance of being selected;
+      cumulativeFitness += Math.pow(1 / error[i], 2); // ^4 gives the best elements even more chance of being selected;
       elementsFitness[i] = cumulativeFitness;
     }
   }
@@ -156,7 +156,5 @@ public class Population
     }
     
     println("Median error : " + medianError / error.length);
-    
-    //delay(1000);
   }
 }
