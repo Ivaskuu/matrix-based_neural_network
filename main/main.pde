@@ -2,5 +2,6 @@ void setup()
 {
   println("Hello world");
   
-  Population pop = new Population(10000, 0.001, new int[] {3, 3, 3});
+  Population pop = new Population(100, 0.001, 3);
+  pop.train();
 }

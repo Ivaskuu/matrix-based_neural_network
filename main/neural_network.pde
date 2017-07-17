@@ -4,7 +4,7 @@ public class NeuralNetwork
 {
   private int[] layers; // Neural network topology
   private double[][] neurons; // [layer_num (0: input layer, neurons.length - 1: output layer)][neuron_pos]
-  private double[][][] weights; // [layer_num][neuron][previous_layer_neuron_weight]
+  public double[][][] weights; // [layer_num][neuron][previous_layer_neuron_weight]
   
   NeuralNetwork(int[] topology) // [3, 2, 1] : 3 input neurons, 2 hidden neurons, 1 output neuron
   {
@@ -12,6 +12,18 @@ public class NeuralNetwork
     createNeurons();
     createWeights();
   }
+  
+  /*public void createFromParents(NeuralNetwork parent1, NeuralNetwork parent2)
+  {
+    for(int i = 1; i < layers.length; i++)
+    {
+      int neuronsNum
+      for(int j = 0; j < layers[i]; j++)
+      {
+        
+      }
+    }
+  }*/
   
   private void createNeurons()
   {
