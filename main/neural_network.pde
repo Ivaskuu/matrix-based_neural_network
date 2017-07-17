@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class NeuralNetwork
 {
   private int[] layers; // Neural network topology
@@ -43,6 +45,51 @@ public class NeuralNetwork
       }
     }
   }
+  
+  public double[] feedForward(double[] input)
+  {
+    if(input.length != layers[0])
+    {
+      println("\n/!\\ The input values size is diferent than the input neurons number /!\\\n");
+      return null;
+    }
+    
+    // Put the input values into the input neurons
+    for(int i = 0; i < layers[0]; i++)
+    {
+      neurons[0][i] = input[i];
+    }
+    
+    // Iterate each layer except the first one
+    for(int i = 1; i < layers.length; i++)
+    {
+      // Iterate each neuron in the i-th layer
+      for(int j = 0; j < neurons[i].length; j++)
+      {
+        // Adding the bias
+        double neuronValue = 0.25;
+        
+        // Iterate each neuron in the (i-1)-th layer to get its value and the connection weight
+        for(int k = 0; k < neurons[i-1].length; k++)
+        { 
+          // Add the neuron value multiplied by its weight
+          neuronValue += neurons[i-1][k] * weights[i][j][k];
+        }
+        
+        // Calculate the j-th neuron value by using an activation function (in this case the hyperbolic tangent)
+        neurons[i][j] = activate(neuronValue);
+      }
+    }
+    
+    return neurons[neurons.length - 1];
+  }
+  
+  // tanh activation method
+  private double activate(double value)
+  {
+    return Math.tanh(value);
+  }
+  
   
   public void printNetworkTopology()
   {
