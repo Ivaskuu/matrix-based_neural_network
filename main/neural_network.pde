@@ -90,6 +90,11 @@ public class NeuralNetwork
     return Math.tanh(value);
   }
   
+  public double calculateFitness()
+  {
+    return 0;
+  }
+  
   public void mutate()
   {
     // Iterate each layer with weight connections (so not the input layer)
