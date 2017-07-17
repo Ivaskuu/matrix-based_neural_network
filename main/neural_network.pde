@@ -90,6 +90,46 @@ public class NeuralNetwork
     return Math.tanh(value);
   }
   
+  public void mutate()
+  {
+    // Iterate each layer with weight connections (so not the input layer)
+    for(int i = 1; i < layers.length; i++)
+    {
+      println("\nLayer " + (i+1));
+      
+      int neuronsInPrevLayer = layers[i-1];
+      
+      // Iterate each neuron int the i-th layer
+      for(int j = 0; j < layers[i]; j++)
+      {
+        // Iterate connections from previous neurons
+        for(int k = 0; k < neuronsInPrevLayer; k++)
+        {
+          double weight = weights[i][j][k];
+          
+          double r = random(100);
+          if(r < 40)
+          {
+            weight *= -1;
+          }
+          else if(r < 70)
+          {
+            weight += 0.5;
+          }
+          else if(r < 90)
+          {
+            weight -= 0.5;
+          }
+          else 
+          {
+            weight = random(-1, 1);
+          }
+          
+          weights[i][j][k] = weight;
+        }
+      }
+    }
+  }
   
   public void printNetworkTopology()
   {
