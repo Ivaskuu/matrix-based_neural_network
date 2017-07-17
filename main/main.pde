@@ -7,5 +7,9 @@ void setup()
   nn.printNetworkTopology();
   nn.printWeights();
   
-  nn.feedForward(new double[] {1, 0.28, 0.57});
+  double[] results = nn.feedForward(new double[] {1, 0.28, 0.57});
+  for(int i = 0; i < results.length; i++)
+  {
+    println(results[i]);
+  }
 }
